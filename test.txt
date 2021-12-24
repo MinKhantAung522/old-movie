@@ -1,4 +1,4 @@
-<div v-for="movie in movies" :key="movie.id">
+
       <div v-if="movie.id == id">
         <h1>{{ movie.title }}</h1>
         <div class="d-flex flex-row border">

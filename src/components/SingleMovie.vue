@@ -8,8 +8,9 @@
             height="100%"
             :src="image_start+movie.poster_path"
           >
+                  
             <v-card-text
-          >rating</v-card-text>
+          class="rate">rating</v-card-text>
           </v-img>
           <div class="detail">
             <v-card-title>
@@ -34,7 +35,7 @@ export default {
       }
   },
   methods:{
-    displayEach(id){
+    displayEach(id,page){
       this.$router.push('/movie-detail/'+id)
     }
   }
@@ -46,5 +47,12 @@ export default {
 width: 250px;
 height:90px;
 background: rgb(208, 238, 238);
+}
+.rate{
+  display: inline;
+  background: black;
+  color: aqua;
+  border-radius: 20px;
+  margin-bottom: 49px;
 }
 </style>

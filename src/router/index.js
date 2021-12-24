@@ -6,9 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/:pg',
     name: 'Home',
-    component: Home
+    component: Home,
+    props: true
   },
   {
     path: '/about',
@@ -24,7 +25,7 @@ const routes = [
     component: MovieDetail,
     props:true
   },
-
+                                                                                                                                                                                                                                                      
 ]
 
 const router = new VueRouter({

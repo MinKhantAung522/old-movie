@@ -2,28 +2,33 @@
   <div>
     <h1>Popular Movies and Series</h1>
     <PopularMovie :movies="movies"></PopularMovie>
-    <h1>Movies</h1>
-    <SingleMovie :movies="movies"></SingleMovie>
-    <div class="text-center">
+    <div class="text-center" @click="sent">
       <v-pagination
         v-model="page"
         :length="movies.length"
         :total-visible="5"
+        
       ></v-pagination>
     </div>
+    <h1>Movies</h1>
+    <SingleMovie :movies="movies"></SingleMovie>
+
   </div>
 </template>
 
 <script>
+import MovieDetail from '../components/MovieDetail'
 import PopularMovie from "../components/PopularMovie";
 import SingleMovie from "../components/SingleMovie";
 import axios from "axios";
 export default {
   components: {
+    MovieDetail,
     PopularMovie,
     SingleMovie,
   },
   name: "Home",
+  props:["pagee"],
 
   data() {
     return {
@@ -31,8 +36,16 @@ export default {
       apikey: "api_key=11f20a2f7d9fda9571965c5ed8d33d4e",
       start: "https://api.themoviedb.org/3",
       movies: [],
-      page: 1,
+      page:this.pagee
     };
+  },
+  
+  methods:{
+    sent(){
+      let now = this.page;
+      this.$emit('pgtran',now)
+      this.$router.push("/"+this.page)
+    }
   },
   watch: {
     page: function (val) {
@@ -50,7 +63,7 @@ export default {
         })
         .then((data) => {
           this.movies = data;
-          console.log(this.movies);
+          
         });
     },
   },
@@ -70,7 +83,7 @@ export default {
       .then((data) => {
         this.movies = data;
         console.log(this.movies);
-      });
+      }); 
   },
 };
 </script>
